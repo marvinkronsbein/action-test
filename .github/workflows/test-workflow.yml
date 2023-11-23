@@ -1,0 +1,24 @@
+# Example workflow using the venv composite action
+name: Test venv
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - name: Create Virtual Environment
+      id: venv-and-run
+      uses: actions/py-venv-composite-action@v1
+      with:
+        python-version: '3.8'
+        requirements-file: 'requirements/files/requirements.txt'
+        constraints-file: 'requirements/files/constraints.txt'
+        requirements: 'numpy pandas'
+        constraints: 'pandas==1.1.1'
+        run: |
+          python hello_world.py
+          python -m pip list
+    - name: Get output
+      run: |
+        echo "Virtual Environment Path: ${{ steps.venv-and-run.outputs.venv_path }}"
