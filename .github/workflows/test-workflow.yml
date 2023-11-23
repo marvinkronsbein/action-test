@@ -9,7 +9,7 @@ jobs:
       uses: actions/checkout@v4
     - name: Create Virtual Environment
       id: venv-and-run
-      uses: marvinkronsbein/py-venv-composite-action@v1
+      uses: marvinkronsbein/py-venv-composite-action@v1.1
       with:
         python-version: '3.8'
         requirements-file: 'requirements/files/requirements.txt'
